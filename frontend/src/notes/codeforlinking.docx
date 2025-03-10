@@ -1,0 +1,86 @@
+// import { Route } from 'react-router-dom'
+// import { lazy } from 'react'
+
+// const Home = lazy(() => import('../pages/Home'))
+// const About = lazy(() => import('../pages/About'))
+// const Contact = lazy(() => import('../pages/Contact'))
+
+// const routes = [
+//   { path: '/', element: <Home /> },
+//   { path: '/about', element: <About /> },
+//   { path: '/contact', element: <Contact /> },
+// ]
+
+// const RouteConfig = () => {
+//   return routes.map((route) => (
+//     <Route key={route.path} path={route.path} element={route.element} />
+//   ))
+// }
+
+// export default RouteConfig
+
+
+
+
+
+// import { Suspense } from 'react'
+// import { Routes } from 'react-router-dom'
+// import RouteConfig from './routes'
+
+// function App() {
+//   return (
+//     <div>
+//       <Suspense fallback={<div>Loading...</div>}>
+//         <Routes>
+//           <RouteConfig />
+//         </Routes>
+//       </Suspense>
+//     </div>
+//   )
+// }
+
+// export default App
+
+
+
+
+
+// // src/components/Header.jsx
+// import { NavLink } from 'react-router-dom'
+
+// const Header = () => {
+//   return (
+//     <header>
+//       <nav>
+//         <ul>
+//           <li>
+//             <NavLink
+//               to="/"
+//               className={({ isActive }) => (isActive ? 'active' : '')}
+//             >
+//               Home
+//             </NavLink>
+//           </li>
+//           <li>
+//             <NavLink
+//               to="/about"
+//               className={({ isActive }) => (isActive ? 'active' : '')}
+//             >
+//               About
+//             </NavLink>
+//           </li>
+//           <li>
+//             <NavLink
+//               to="/contact"
+//               className={({ isActive }) => (isActive ? 'active' : '')}
+//             >
+//               Contact
+//             </NavLink>
+//           </li>
+//         </ul>
+//       </nav>
+//     </header>
+//   )
+// }
+
+// export default Header

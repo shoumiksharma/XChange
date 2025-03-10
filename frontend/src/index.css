@@ -1,0 +1,5 @@
+@import "tailwindcss";
+
+@theme {
+    --font-moderna: "Playwrite IT Moderna", cursive;
+}
