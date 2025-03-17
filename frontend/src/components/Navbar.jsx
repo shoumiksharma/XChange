@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import HamburgerMenu from './HamburgerMenu';
 import SidebarMenu from './SidebarMenu';
-import { handleLogin, handleLogout } from '../utils/authFunctions';
+// import { handleLogin, handleLogout } from '../utils/authFunctions';
+import { useNavigate } from 'react-router-dom';
 
 function Navbar({openFeedback}) {
+    const navigate = useNavigate();
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [user, setUser] = useState(null);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -14,6 +16,14 @@ function Navbar({openFeedback}) {
 
     const closeMenu = () => {
         setIsMenuOpen(false);
+    };
+
+    const handleLogin = () => {
+        navigate('/log-in');
+    };
+
+    const handleSignIn = () => {
+        navigate('/sign-in');
     };
 
     return (
@@ -29,12 +39,11 @@ function Navbar({openFeedback}) {
                             {!isLoggedIn ? (
                                 <div className="flex gap-[1vw]">
                                     <button
-                                        onClick={() => handleLogin(setIsLoggedIn, setUser)}
-                                        className="bg-blue-500 hover:bg-sky-700 text-white px-[1vw] py-[0.5vh] rounded-full mr-2"
-                                    >
-                                        Login
+                                        onClick={() => handleLogin()}
+                                        className="bg-blue-500 hover:bg-sky-700 text-white px-[1vw] py-[0.5vh] rounded-full mr-2">
+                                        Log In
                                     </button>
-                                    <button className="bg-green-500 hover:bg-green-700 text-white px-[1vw] py-[0.5vh] rounded-full">
+                                    <button className="bg-green-500 hover:bg-green-700 text-white px-[1vw] py-[0.5vh] rounded-full" onClick={() => handleSignIn()}>
                                         Sign Up
                                     </button>
                                 </div>
