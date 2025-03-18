@@ -1,8 +1,89 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
+import { fetchUser } from "../utils/fetchUser";
 
 function Profile(){
     const[editing, setEditiing] = useState(false);
+    const [user, setUser] = useState({
+        name: '',
+        hostel: '',
+        room_no: '',
+        type: '',
+    })
+
+    const [formData, setFormData] = useState({
+        name: '',
+        hostel: '',
+        room_no: '',
+        type: '',
+    })
+
+    const handleSubmit = () => {
+        updateUser(formData);
+        setEditiing(false);
+    }
+
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setFormData((prevState) => ({
+            ...prevState,
+            [name]: value,
+        }))
+    }
+
+    const updateUser = async () => {
+
+        try{
+            const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/v1/user/update`, {
+                method : 'POST',
+                headers : {
+                    'Content-Type' : 'application/json'
+                },
+                credentials : 'include',
+                body : JSON.stringify({
+                    name: `${formData.name}`,
+                    hostel: `${formData.hostel}`,
+                    type: `${formData.type}`,
+                    room_no: `${formData.room_no}`
+                })
+            })
+    
+            if(response.status != 200){
+                console.log("Error. Try again !");
+            }
+        }
+    
+        catch(err){
+            console.log("Error : ",err);
+        }
+    }
+
+    useEffect(() => {
+        const fetchUserData = async () => {
+
+            const userData = await fetchUser();
+            const u = userData.user;
+    
+            if (userData) {
+                setUser({
+                    name: u.name,
+                    hostel: u.hostel,
+                    room_no: u.room_no,
+                    type: u.type
+                })
+                setFormData({
+                    name: u.name,
+                    hostel: u.hostel,
+                    room_no: u.room_no,
+                    type: u.type
+                })
+            }
+
+        }
+
+        fetchUserData();
+    }, [setEditiing] );
+
     return (
         <>
 
@@ -23,34 +104,31 @@ function Profile(){
 
                     <div className="2xl:mt-[150px] 2xl:text-[40px] md:mt-[140px] mt-[70px] flex justify-items-start w-[80vw] gap-[100px]">
 
-                        <form action="" className="mb-[40px]">
-                            <div className="grid grid-cols-2 grid-rows-5 grid-flow-col gap-x-[40px] md:gap-x-[100px] md:gap-y-[20px]">
+                        <form action="" onSubmit={handleSubmit}>
+                            <div className="grid grid-cols-2 grid-rows-4 grid-flow-col gap-x-[40px] md:gap-x-[100px] md:gap-y-[20px] mb-[40px]">
                                 <label htmlFor="name">Name : </label>
                                 <label htmlFor="hostel">Hostel : </label>
                                 <label htmlFor="room">Room : </label>
                                 <label htmlFor="type">Room Type : </label>
-                                <label htmlFor="email">Email ID : </label>
                     
-                                {!editing && <div>jnjkn</div>}
-                                {!editing && <div>jnjkn</div>}
-                                {!editing && <div>jnjkn</div>}
-                                {!editing && <div>jnjkn</div>}
-                                {!editing && <div>jnjkn</div>}
+                                {!editing && <div>{user.name}</div>}
+                                {!editing && <div>{user.hostel}</div>}
+                                {!editing && <div>{user.room_no}</div>}
+                                {!editing && <div>{user.type}</div>}
                                 
-                                {editing && <input type="text" className="rounded-full bg-[#333333] pl-[40px]"/>}
-                                {editing && <input type="text" className="rounded-full bg-[#333333] pl-[40px]"/>}
-                                {editing && <input type="text" className="rounded-full bg-[#333333] pl-[40px]"/>}
-                                {editing && <input type="text" className="rounded-full bg-[#333333] pl-[40px]"/>}
-                                {editing && <input type="text" className="rounded-full bg-[#333333] pl-[40px]"/>}
+                                {editing && <input value={formData.name} name="name" onChange={handleInputChange} type="text" className="rounded-full bg-[#333333] pl-[40px]"/>}
+                                {editing && <input value={formData.hostel} name="hostel" onChange={handleInputChange} type="text" className="rounded-full bg-[#333333] pl-[40px]"/>}
+                                {editing && <input value={formData.room_no} name="room_no" onChange={handleInputChange} type="text" className="rounded-full bg-[#333333] pl-[40px]"/>}
+                                {editing && <input value={formData.type} name="type" onChange={handleInputChange} type="text" className="rounded-full bg-[#333333] pl-[40px]"/>}
                                 
                             </div>
+                            {editing && (<div className="flex justify-center">
+                                <button type="submit" className="bg-blue-500 hover:bg-sky-700 text-white px-[1vw] py-[0.5vh] rounded-full mr-2">Submit</button>
+                            </div>)}
                         </form>
                     </div>
                     
                     
-                    {editing && (<div>
-                        <button onClick={() => setEditiing(false)} className="bg-blue-500 hover:bg-sky-700 text-white px-[1vw] py-[0.5vh] rounded-full mr-2">Submit</button>
-                    </div>)}
                 
                 </div>
             </div>

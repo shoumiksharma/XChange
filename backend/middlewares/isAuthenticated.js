@@ -2,10 +2,10 @@ import jwt from 'jsonwebtoken';
 
 const isAuthenticated = async (req, res, next) => {
     try{
-        const token = req.cookies.token;
+        const token = req.cookies.xchange;
         if(!token){
             return res
-                    .status(400)
+                    .status(401)
                     .json({message : "User not authenticated"});
         }
         const decode = jwt.verify(token, process.env.JWT_SECRET_KEY)
@@ -16,8 +16,7 @@ const isAuthenticated = async (req, res, next) => {
                     .json({message : "Invalid token"});
         }
 
-        req.id = decode._id;
-        console.log(token);
+        req.userId = decode.userId;
         next();
     }
     catch(err){

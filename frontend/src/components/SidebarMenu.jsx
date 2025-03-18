@@ -1,8 +1,34 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
-import { logOut } from '../utils/logInFunctions';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
 function SidebarMenu({ isMenuOpen , closeMenu, openFeedback }) {
+    const isLoggedIn = useSelector((state) => state.isLoggedIn);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    
+    const logOut = async () => {
+        try{
+            const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/v1/user/logOut`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                credentials : 'include'
+            })
+            const data = await response.json();
+            console.log(data.message);
+            if(response.status == 200){
+                dispatch({type : 'logOut' });
+                navigate('/');
+            }
+        }
+    
+        catch(err){
+            console.log("Error : ",err);
+        }
+    }
+
     return (
         true && (
             <div
@@ -14,8 +40,8 @@ function SidebarMenu({ isMenuOpen , closeMenu, openFeedback }) {
                 <NavLink to="/search-rooms" className={({ isActive }) => `${isActive ? 'bg-gray-700' : ''} p-4 hover:bg-gray-700 transform transition-transform ease-in-out hover:scale-110 duration-200 text-lg w-full rounded-full text-center`}>Search Room</NavLink>
                 <NavLink to="/" className={({ isActive }) => `${isActive ? 'bg-gray-700' : ''} p-4 hover:bg-gray-700 transform transition-transform ease-in-out hover:scale-110 duration-200 text-lg w-full rounded-full text-center`}>Host Room</NavLink>
                 <NavLink to="/reviews" className={({ isActive }) => `${isActive ? 'bg-gray-700' : ''} p-4 hover:bg-gray-700 transform transition-transform ease-in-out hover:scale-110 duration-200 text-lg w-full rounded-full text-center`}>Hostel Review</NavLink>
-                <NavLink to="/profile" className={({ isActive }) => `${isActive ? 'bg-gray-700' : ''} p-4 hover:bg-gray-700 transform transition-transform ease-in-out hover:scale-110 duration-200 text-lg w-full rounded-full text-center`}>Profile</NavLink>
-                <NavLink to="/" onClick={() => {logOut()}} className={`p-4 hover:bg-gray-700 transform transition-transform ease-in-out hover:scale-110 duration-200 text-lg w-full rounded-full text-center`}>Log Out</NavLink>
+                {isLoggedIn && <NavLink to="/profile" className={({ isActive }) => `${isActive ? 'bg-gray-700' : ''} p-4 hover:bg-gray-700 transform transition-transform ease-in-out hover:scale-110 duration-200 text-lg w-full rounded-full text-center`}>Profile</NavLink>}
+                {isLoggedIn && <NavLink to="/" onClick={() => {logOut()}} className={`p-4 hover:bg-gray-700 transform transition-transform ease-in-out hover:scale-110 duration-200 text-lg w-full rounded-full text-center`}>Log Out</NavLink>}
                 <button onClick={openFeedback} className="p-4 hover:bg-gray-700 transform transition-transform ease-in-out hover:scale-110 duration-200 text-lg w-full rounded-full text-center">Have a feedback ?</button>
             </div>
         </div>)

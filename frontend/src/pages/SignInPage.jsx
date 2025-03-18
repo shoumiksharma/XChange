@@ -11,7 +11,10 @@ function SignIn(){
         username: '',
         password: '',
         confirmPassword: '',
-        gender: ''
+        gender: '',
+        hostel: '',
+        type: '',
+        room_no: ''
     });
     
     const handleChange = (e) => {
@@ -43,12 +46,15 @@ function SignIn(){
             <div className='bg-[#19191b] flex flex-col items-center gap-[5vh] font-moderna text-white text-[2vw]'>
                 <div className="border-2 border-black flex justify-around items-center w-[95vw] rounded-2xl p-[20px]">
                     <form action="" onSubmit={handleSubmit} className="flex flex-col justify-center items-center gap-[70px] p-[7px]">
-                        <div className="grid grid-cols-2 grid-rows-5 grid-flow-col gap-x-[40px] md:gap-x-[100px] md:gap-y-[20px]">
+                        <div className="grid grid-cols-2 grid-rows-8 grid-flow-col gap-x-[40px] md:gap-x-[100px] md:gap-y-[20px]">
                                 <label htmlFor="name">Name :</label>
                                 <label htmlFor="gender">Gender :</label>
                                 <label htmlFor="username">Username :</label>
                                 <label htmlFor="password">Password :</label>
                                 <label htmlFor="re-enter-password">Confirm Password :</label>
+                                <label htmlFor="re-enter-password">Hostel : </label>
+                                <label htmlFor="re-enter-password">Room No. : </label>
+                                <label htmlFor="re-enter-password">Room Type : </label>
                                 <input className="border-2 border-black rounded-2xl bg-[#333333] px-[20px]" type="text" id="name" name="name" value={formData.name} onChange={handleChange}/>
                                 <div className="flex justify-evenly">
                                     <div className="flex items-center gap-[20px]">
@@ -65,6 +71,9 @@ function SignIn(){
                                 <input className="border-2 border-black rounded-2xl bg-[#333333] px-[20px]" type="text" id="username" name="username" value={formData.username} onChange={handleChange}/>
                                 <input className="border-2 border-black rounded-2xl bg-[#333333] px-[20px]" type="text" id="password" name="password" value={formData.password} onChange={handleChange}/>
                                 <input className="border-2 border-black rounded-2xl bg-[#333333] px-[20px]" type="text" id="re-enter-password" name="confirmPassword" value={formData.confirmPassword} onChange={handleChange}/>
+                                <input className="border-2 border-black rounded-2xl bg-[#333333] px-[20px]" type="text" id="hostel" name="hostel" value={formData.hostel} onChange={handleChange}/>
+                                <input className="border-2 border-black rounded-2xl bg-[#333333] px-[20px]" type="text" id="room_no" name="room_no" value={formData.room_no} onChange={handleChange}/>
+                                <input className="border-2 border-black rounded-2xl bg-[#333333] px-[20px]" type="text" id="type" name="type" value={formData.type} onChange={handleChange}/>
                         </div>
                         <button type="submit" className="bg-green-500 hover:bg-green-700 text-white px-[1vw] py-[0.5vh] rounded-full">
                             Sign Up
