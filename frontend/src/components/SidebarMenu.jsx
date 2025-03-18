@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { logOut } from '../utils/logInFunctions';
 
 function SidebarMenu({ isMenuOpen , closeMenu, openFeedback }) {
     return (
@@ -14,7 +15,7 @@ function SidebarMenu({ isMenuOpen , closeMenu, openFeedback }) {
                 <NavLink to="/" className={({ isActive }) => `${isActive ? 'bg-gray-700' : ''} p-4 hover:bg-gray-700 transform transition-transform ease-in-out hover:scale-110 duration-200 text-lg w-full rounded-full text-center`}>Host Room</NavLink>
                 <NavLink to="/reviews" className={({ isActive }) => `${isActive ? 'bg-gray-700' : ''} p-4 hover:bg-gray-700 transform transition-transform ease-in-out hover:scale-110 duration-200 text-lg w-full rounded-full text-center`}>Hostel Review</NavLink>
                 <NavLink to="/profile" className={({ isActive }) => `${isActive ? 'bg-gray-700' : ''} p-4 hover:bg-gray-700 transform transition-transform ease-in-out hover:scale-110 duration-200 text-lg w-full rounded-full text-center`}>Profile</NavLink>
-                <NavLink to="/" className={({ isActive }) => `${isActive ? 'bg-gray-700' : ''} p-4 hover:bg-gray-700 transform transition-transform ease-in-out hover:scale-110 duration-200 text-lg w-full rounded-full text-center`}>Log Out</NavLink>
+                <NavLink to="/" onClick={() => {logOut()}} className={`p-4 hover:bg-gray-700 transform transition-transform ease-in-out hover:scale-110 duration-200 text-lg w-full rounded-full text-center`}>Log Out</NavLink>
                 <button onClick={openFeedback} className="p-4 hover:bg-gray-700 transform transition-transform ease-in-out hover:scale-110 duration-200 text-lg w-full rounded-full text-center">Have a feedback ?</button>
             </div>
         </div>)
