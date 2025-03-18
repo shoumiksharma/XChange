@@ -82,7 +82,8 @@ export const logIn = async(req, res) => {
                 .status(200)
                 .cookie("xchange", token, {
                     httpOnly: true,  // Can't access the cookie via JS
-                    sameSite: 'Strict',
+                    sameSite: 'None',
+                    secure: true
                 })
                 .json({message : "Log In Successfull !", name : user.name});
     }
