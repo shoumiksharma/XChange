@@ -11,7 +11,7 @@ dotenv.config();
 const PORT = process.env.PORT || 8080;
 
 app.use(cors({
-    origin: 'http://localhost:5173', // Allow only requests from your frontend's address
+    origin: 'https://project-xchange.onrender.com', // Allow only requests from your frontend's address
     // methods: ['GET', 'POST'],       // Allow specific HTTP methods
     credentials: true,               // Allow cookies (if needed)
 }));
