@@ -23,6 +23,18 @@ const userModel = new mongoose.Schema(
             type : String,
             enum : ["m", "f"],
             required : true
+        },
+        hostel:{
+            type : Number,
+            required : true
+        },
+        type:{
+            type : String,
+            required : true
+        },
+        room_no:{
+            type : Number,
+            required : true
         }
     }, {timestamps : true}
 )

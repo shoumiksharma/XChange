@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { logIn } from "../utils/logInFunctions";
+import { useDispatch, useSelector } from "react-redux";
 
 
 function LogIn(){
 
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const [formData, setFormData] = useState({
         username: '',
@@ -28,9 +30,10 @@ function LogIn(){
             const data = await response.json();
             console.log(data)
             alert(data.message);
-            // if(response.status == 200){
-                // navigate('/log-in');
-            // }
+            if(response.status == 200){
+                dispatch({ type: 'logIn' });
+                navigate('/');
+            }
         } 
         catch (error) {
             alert("Error occured. Try again !");

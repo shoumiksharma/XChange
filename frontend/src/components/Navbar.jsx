@@ -3,12 +3,16 @@ import HamburgerMenu from './HamburgerMenu';
 import SidebarMenu from './SidebarMenu';
 // import { handleLogin, handleLogout } from '../utils/authFunctions';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
 function Navbar({openFeedback}) {
     const navigate = useNavigate();
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    // const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [user, setUser] = useState(null);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+    const isLoggedIn = useSelector((state) => state.isLoggedIn);
+    const dispatch = useDispatch(); 
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
@@ -49,10 +53,10 @@ function Navbar({openFeedback}) {
                                 </div>
                             ) : (
                                 <div className="flex gap-[2vw]">
-                                    <div className="items-center flex">Hello, {user.name}</div>
+                                    <div className="items-center flex">Hello, User</div>
                                     <button className="flex" onClick={() => handleLogout(setIsLoggedIn, setUser)}>
                                         <img
-                                            src={user.profilePicture}
+                                            src='teen.png'
                                             alt="profile"
                                             className="h-[70px] 2xl:h-[80px] rounded-full"
                                         />

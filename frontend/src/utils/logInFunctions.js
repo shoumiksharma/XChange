@@ -10,7 +10,6 @@ export const logIn = async (formData) => {
             body: JSON.stringify(formData),
         });
 
-        // const data = await response.json();
         return response;
     }
     catch (error) {
@@ -25,7 +24,7 @@ export const logOut = async () => {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(),
+            credentials : 'include',
         })
         const data = await response.json();
         console.log(data.message);
