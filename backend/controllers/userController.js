@@ -100,7 +100,11 @@ export const logOut = async(req, res) => {
     try{
         return res
                 .status(200)
-                .clearCookie("xchange")
+                .cookie("xchange", "", {
+                    httpOnly: true,  // Can't access the cookie via JS
+                    sameSite: "None",
+                    secure: 'false'
+                })
                 .json({message : "Log Out Successfull !"});
     }
 
