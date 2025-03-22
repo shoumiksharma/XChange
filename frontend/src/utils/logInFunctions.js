@@ -27,7 +27,6 @@ export const logOut = async () => {
             credentials : 'include',
         })
         const data = await response.json();
-        console.log(data.message);
     }
 
     catch(err){

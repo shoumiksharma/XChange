@@ -1,6 +1,4 @@
 import { Suspense, useEffect, useState } from 'react'
-import Home from './pages/HomePage'
-import Profile from './pages/ProfilePage'
 import RouteConfig from './routes/RouteConfig'
 import { BrowserRouter, Routes, useNavigate } from 'react-router-dom'
 import Navbar from './components/Navbar'
@@ -35,7 +33,6 @@ function App() {
 
   return (
     <>
-      {/* <Home /> */}
       <div className='bg-[#19191b] min-h-screen flex flex-col items-center gap-[5vh] font-moderna text-white'>
       <BrowserRouter>
         <Navbar openFeedback={openFeedback} />

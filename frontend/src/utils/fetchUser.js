@@ -8,6 +8,10 @@ export const fetchUser = async () => {
             credentials : 'include'
         });
 
+        if(user.status == 401){
+            console.log("Unauthorised access !");
+        }
+        
         return await user.json();
     }
 

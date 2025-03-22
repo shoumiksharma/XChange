@@ -35,6 +35,14 @@ const userModel = new mongoose.Schema(
         room_no:{
             type : Number,
             required : true
+        },
+        photos: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Image'
+        },
+        room_hosted: {
+            type: Boolean,
+            default: false
         }
     }, {timestamps : true}
 )

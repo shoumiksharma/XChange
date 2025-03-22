@@ -1,15 +1,10 @@
 import { useEffect, useState } from "react";
-import Navbar from "../components/Navbar";
 import { fetchUser } from "../utils/fetchUser";
+import useGetUser from "../hooks/useGetUser";
 
 function Profile(){
     const[editing, setEditiing] = useState(false);
-    const [user, setUser] = useState({
-        name: '',
-        hostel: '',
-        room_no: '',
-        type: '',
-    })
+    const [user, setUser] = useState({})
 
     const [formData, setFormData] = useState({
         name: '',
@@ -61,22 +56,12 @@ function Profile(){
     useEffect(() => {
         const fetchUserData = async () => {
 
-            const userData = await fetchUser();
-            const u = userData.user;
+            const data = await fetchUser();
+            const userData = data.user;
     
             if (userData) {
-                setUser({
-                    name: u.name,
-                    hostel: u.hostel,
-                    room_no: u.room_no,
-                    type: u.type
-                })
-                setFormData({
-                    name: u.name,
-                    hostel: u.hostel,
-                    room_no: u.room_no,
-                    type: u.type
-                })
+                setUser(userData)
+                setFormData(userData)
             }
 
         }
@@ -84,14 +69,20 @@ function Profile(){
         fetchUserData();
     }, [setEditiing] );
 
+    const userdata = useGetUser();
+    useEffect( () => {
+        if(userdata){
+            setUser(userdata);
+        }
+    }, [userdata]);
+
     return (
         <>
 
             <div className='bg-[#19191b] min-h-screen flex flex-col items-center font-moderna text-white 2xl:text z-0 pb-[40px]'>
-                {/* <Navbar />   */}
                 <div className="bg-black border-2 border-green-400 w-[95vw] rounded-4xl flex flex-col items-center mt-[100px] md:mt-[200px] 2xl:mt-[250px] relative pb-[40px] 2xl:text-[40px] md:text-[30px]">
                     <div className="bg-[#19191b] rounded-full h-[150px] w-[150px] md:h-[270px] md:w-[270px] 2xl:h-[300px] 2xl:w-[300px] border-green-400 border-2 -translate-y-[65%] overflow-hidden absolute">
-                        <img src="teen.png" alt="" className="scale-107 relative -bottom-3"/>
+                        <img src={user.gender === 'm' ? 'teen.png' : 'teen (1).png'} alt="" className="scale-107 relative -bottom-3"/>
                     </div>
 
                     {editing && (
@@ -127,8 +118,6 @@ function Profile(){
                             </div>)}
                         </form>
                     </div>
-                    
-                    
                 
                 </div>
             </div>
