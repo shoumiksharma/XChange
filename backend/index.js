@@ -28,7 +28,7 @@ app.use(express.json());
 app.use("/api/v1/user", userRoutes);
 app.use("/api/v1/room", roomRoutes);
 
-app.use(express.static(path.join(__dirname, "/frontend/dist", 'build')));
+app.use(express.static(path.join(__dirname, "/frontend/dist")));
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'frontend', 'dist', 'index.html'));
 });
