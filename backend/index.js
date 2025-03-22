@@ -5,11 +5,14 @@ import roomRoutes from './routes/roomRoutes.js'
 import connectDB from './config/database.js';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
+import path from 'path';
 
 const app = express();
 
 dotenv.config();
 const PORT = process.env.PORT || 8080;
+
+const __dirname = path.resolve();
 
 app.use(cors({
     origin: `${process.env.origin}`, // Allow only requests from your frontend's address
@@ -21,8 +24,14 @@ app.use(cookieParser());
 
 app.use(express.json());
 
+
 app.use("/api/v1/user", userRoutes);
 app.use("/api/v1/room", roomRoutes);
+
+app.use(express.static(path.join(__dirname, "/frontend/dist", 'build')));
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'frontend', 'dist', 'index.html'));
+});
 
 app.listen(PORT, () => {
     connectDB();
