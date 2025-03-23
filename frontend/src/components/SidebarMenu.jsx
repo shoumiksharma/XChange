@@ -3,7 +3,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 function SidebarMenu({ isMenuOpen , closeMenu, openFeedback }) {
-    const isLoggedIn = useSelector((state) => state.isLoggedIn);
+    const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
     const dispatch = useDispatch();
     const navigate = useNavigate();
     
@@ -19,7 +19,7 @@ function SidebarMenu({ isMenuOpen , closeMenu, openFeedback }) {
             const data = await response.json();
             console.log(data.message);
             if(response.status == 200){
-                dispatch({type : 'logOut' });
+                dispatch({type : 'logOut'});
                 navigate('/');
             }
         }
@@ -38,7 +38,7 @@ function SidebarMenu({ isMenuOpen , closeMenu, openFeedback }) {
                 
                 <NavLink to="/" className={({ isActive }) => `${isActive ? 'bg-gray-700' : ''} p-4 hover:bg-gray-700 transform transition-transform ease-in-out hover:scale-110 duration-200 scale-[2px] text-lg w-full rounded-full text-center`}>Home</NavLink>
                 <NavLink to="/search-rooms" className={({ isActive }) => `${isActive ? 'bg-gray-700' : ''} p-4 hover:bg-gray-700 transform transition-transform ease-in-out hover:scale-110 duration-200 text-lg w-full rounded-full text-center`}>Search Room</NavLink>
-                <NavLink to="/" className={({ isActive }) => `${isActive ? 'bg-gray-700' : ''} p-4 hover:bg-gray-700 transform transition-transform ease-in-out hover:scale-110 duration-200 text-lg w-full rounded-full text-center`}>Host Room</NavLink>
+                <NavLink to="/room" className={({ isActive }) => `${isActive ? 'bg-gray-700' : ''} p-4 hover:bg-gray-700 transform transition-transform ease-in-out hover:scale-110 duration-200 text-lg w-full rounded-full text-center`}>Your Room</NavLink>
                 <NavLink to="/reviews" className={({ isActive }) => `${isActive ? 'bg-gray-700' : ''} p-4 hover:bg-gray-700 transform transition-transform ease-in-out hover:scale-110 duration-200 text-lg w-full rounded-full text-center`}>Hostel Review</NavLink>
                 {isLoggedIn && <NavLink to="/profile" className={({ isActive }) => `${isActive ? 'bg-gray-700' : ''} p-4 hover:bg-gray-700 transform transition-transform ease-in-out hover:scale-110 duration-200 text-lg w-full rounded-full text-center`}>Profile</NavLink>}
                 {isLoggedIn && <NavLink to="/" onClick={() => {logOut()}} className={`p-4 hover:bg-gray-700 transform transition-transform ease-in-out hover:scale-110 duration-200 text-lg w-full rounded-full text-center`}>Log Out</NavLink>}
@@ -49,10 +49,3 @@ function SidebarMenu({ isMenuOpen , closeMenu, openFeedback }) {
 }
 
 export default SidebarMenu;
-
-                {/* <button className="p-4 text-lg hover:bg-gray-700 w-full rounded-full">Search Room</button>
-                <button className="p-4 text-lg hover:bg-gray-700 w-full rounded-full">Host Room</button>
-                <button className="p-4 text-lg hover:bg-gray-700 w-full rounded-full">Hostel Review</button>
-                <button className="p-4 text-lg hover:bg-gray-700 w-full rounded-full">Profile</button>
-                <button className="p-4 text-lg hover:bg-gray-700 w-full rounded-full">Log Out</button>
-                <button className="p-4 text-lg hover:bg-gray-700 w-full rounded-full">Have a feedback ?</button> */}

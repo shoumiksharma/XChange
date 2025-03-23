@@ -1,6 +1,7 @@
 import express, { urlencoded } from 'express'
 import dotenv from 'dotenv'
 import userRoutes from './routes/userRoutes.js'
+import roomRoutes from './routes/roomRoutes.js'
 import connectDB from './config/database.js';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
@@ -21,6 +22,7 @@ app.use(cookieParser());
 app.use(express.json());
 
 app.use("/api/v1/user", userRoutes);
+app.use("/api/v1/room", roomRoutes);
 
 app.listen(PORT, () => {
     connectDB();

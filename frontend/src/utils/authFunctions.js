@@ -1,5 +1,3 @@
-// src/components/authFunctions.js
-
 export const handleLogin = (setIsLoggedIn, setUser) => {
     setIsLoggedIn(true);
     setUser({

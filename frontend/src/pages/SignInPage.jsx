@@ -29,7 +29,7 @@ function SignIn(){
         e.preventDefault();
         try {
             console.log(formData);
-            const response = await signIn(formData);  // Send the form data to backend
+            const response = await signIn(formData);
             const data = await response.json();
             alert(data.message);
             if(response.status == 200){
@@ -80,7 +80,6 @@ function SignIn(){
                         </button>
                     </form>
 
-                    {/* <div className="sm:h-[11vh] 2xl:h-[44vh] h-[100px] w-[0.1vw] bg-[#383838]"></div> */}
                     <div>
                         <img className="" src="worker.png" alt="" />
                     </div>

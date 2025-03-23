@@ -7,6 +7,7 @@ const SearchRooms = lazy(() => import('../pages/AvailableRooms'))
 const HostelReview = lazy(() => import('../pages/HostelReviewPage'))
 const SignIn = lazy(() => import('../pages/SignInPage'))
 const LogIn = lazy(() => import('../pages/LogInPage'))
+const Room = lazy(() => import('../pages/RoomPage'))
 
 
 const routes = [
@@ -15,7 +16,8 @@ const routes = [
   { path: '/search-rooms', element: <SearchRooms />},
   { path: '/reviews', element: <HostelReview />},
   { path: '/sign-in', element: <SignIn/>},
-  { path: '/log-in', element: <LogIn />}
+  { path: '/log-in', element: <LogIn />},
+  { path: '/room', element: <Room />}
 ]
 
 const RouteConfig = () => {

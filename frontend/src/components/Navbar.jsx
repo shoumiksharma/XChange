@@ -1,18 +1,35 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import HamburgerMenu from './HamburgerMenu';
 import SidebarMenu from './SidebarMenu';
-// import { handleLogin, handleLogout } from '../utils/authFunctions';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { fetchUser } from '../utils/fetchUser';
 
 function Navbar({openFeedback}) {
     const navigate = useNavigate();
-    // const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState({});
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    
+    const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
-    const isLoggedIn = useSelector((state) => state.isLoggedIn);
-    const dispatch = useDispatch(); 
+    useEffect(() => {
+        const fetchUserData = async () => {
+
+            const data = await fetchUser();
+            const userData = data.user;
+    
+            if (userData) {
+                console.log(userData);
+                setUser(userData)
+            }
+
+        }
+        
+        if(isLoggedIn){
+            fetchUserData();
+        }
+    }, [isLoggedIn] );
+
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
@@ -29,6 +46,7 @@ function Navbar({openFeedback}) {
     const handleSignIn = () => {
         navigate('/sign-in');
     };
+    
 
     return (
         <>
@@ -53,10 +71,10 @@ function Navbar({openFeedback}) {
                                 </div>
                             ) : (
                                 <div className="flex gap-[2vw]">
-                                    <div className="items-center flex">Hello, User</div>
-                                    <button className="flex" onClick={() => handleLogout(setIsLoggedIn, setUser)}>
+                                    <div className="items-center flex">Hello, {user.name || 'User'}</div>
+                                    <button className="flex" onClick={() => navigate('/profile')}>
                                         <img
-                                            src='teen.png'
+                                            src={user.gender === 'm' ? 'teen.png' : 'teen (1).png'}
                                             alt="profile"
                                             className="h-[70px] 2xl:h-[80px] rounded-full"
                                         />

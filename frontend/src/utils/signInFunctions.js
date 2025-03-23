@@ -9,7 +9,6 @@ export const signIn = async (formData) => {
             body: JSON.stringify(formData),
         });
 
-        // const data = await response.json();
         return response;
     }
     catch (error) {

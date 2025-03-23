@@ -1,4 +1,3 @@
-import Navbar from "../components/Navbar"
 import useAOS from "../hooks/useAOS"
 
 function Home(){
@@ -8,7 +7,6 @@ function Home(){
     return (
         <>
             <div className='bg-[#19191b] min-h-screen flex flex-col items-center gap-[5vh] font-moderna text-white'>
-                {/* <Navbar /> */}
                 <div className=" w-[95vw] rounded-4xl text-center py-[2vh] text-[3vw] bg-clip-text text-transparent bg-gradient-to-br from-[#15ff5b] to-[#217af6]">Welcome to XChange ! <br /> NIT Kurukshetra's room exchange platform
                 </div>
 

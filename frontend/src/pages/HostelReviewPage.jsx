@@ -2,7 +2,6 @@ function HostelReview(){
     return(
         <>
             <div className='bg-[#19191b] min-h-screen flex flex-col items-center gap-[5vh] font-moderna text-white'>
-                {/* <Navbar /> */}
                 <div className="flex justify-end w-[85vw] text-[20px]">
                     <form action="">
                         <input className="h-[20px] w-[20px] mr-[7px]" type="checkbox" value={"yes"}/>

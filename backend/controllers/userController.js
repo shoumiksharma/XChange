@@ -81,12 +81,21 @@ export const logIn = async(req, res) => {
 
         const token = jwt.sign(tokenData, process.env.JWT_SECRET_KEY);
 
+        const user_data = {
+            name : user.name,
+            gender : user.gender
+        }
+
         return res
                 .status(200)
                 .cookie("xchange", token, {
                     httpOnly: true,  // Can't access the cookie via JS
                     sameSite: "None",
                     secure: 'false'
+                })
+                .cookie("user_data", JSON.stringify(user_data), {
+                    sameSite : "None",
+                    secure : 'false'
                 })
                 .json({message : "Log In Successfull !", name : user.name});
     }
@@ -139,6 +148,8 @@ export const updateUser = async(req, res) => {
             updatedData, 
         { new: true, runValidators: true }
         );
+
+        console.log("user : ", updatedUser);
 
         return res
                 .status(200)
