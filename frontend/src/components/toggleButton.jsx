@@ -32,7 +32,7 @@ const ToggleButton = () => {
   }
 
   useEffect( () => {
-    if(!isToggled && hosted){
+    if((!isToggled && hosted) || (isToggled && !hosted)){
       setIsToggled(!isToggled);
     }
   })
