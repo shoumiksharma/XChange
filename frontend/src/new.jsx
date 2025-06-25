@@ -6,12 +6,11 @@ import Feedback from './components/Feedback'
 import useFeedback from './hooks/useFeedback'
 import { useDispatch, useSelector } from 'react-redux'
 import io from "socket.io-client";
-import { setSocket } from './redux/socketReducer'
-import { setUser } from './redux/userReducer'
 
 function App() {
     const { feedback, openFeedback, closeFeedback } = useFeedback();
     const dispatch = useDispatch();
+    const [socket, setSocket] = useState("");
     const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
     const getInitialState = async () => {
@@ -25,20 +24,6 @@ function App() {
 
         if (response.status == 200) {
             dispatch({ type: 'logIn' });
-            console.log("fetching data")
-            
-            const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/v1/user/data`, {
-                method: "GET",
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                credentials: "include"
-            })
-            const data = await response.json();
-            console.log(data);
-
-            dispatch(setUser(data));
-
         }
         else {
             dispatch({ type: 'logOut' });
@@ -51,32 +36,26 @@ function App() {
 
     useEffect(() => {
         if (isLoggedIn) {
-            console.log("logged in");
-            const socket = io("http://localhost:8080", {
-                withCredentials : true
-            });
-            dispatch(setSocket(socket));
+            const socket = io("http://localhost:8080");
+            setSocket(socket);
 
             socket.on("connect", () => {
                 console.log("connected");
+
             })
 
-            socket.on("disconnect", () => {
-                console.log("disconnected");
-            })
-
-            // socket.on("receiveMsg", (data) => {
-            //     console.log(data);
-            // })
 
             return () => {
-                socket.disconnect();
+                socket.on("disconnect", () => {
+                    console.log("disconnected");
+                })
+                // socket.disconnect();
             }
 
         }
 
 
-    }, [isLoggedIn])
+    }, [])
 
     return (
         <>
@@ -93,5 +72,3 @@ function App() {
 }
 
 export default App
-
-
