@@ -77,7 +77,7 @@ function ChatPage() {
             }
         }
         fetch();
-    },[])
+    },[list])
 
     useEffect(() => {
 
