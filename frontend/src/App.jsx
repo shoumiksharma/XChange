@@ -22,6 +22,8 @@ function App() {
             },
             credentials: "include"
         })
+        
+        console.log(response);
 
         if (response.status == 200) {
             dispatch({ type: 'logIn' });
