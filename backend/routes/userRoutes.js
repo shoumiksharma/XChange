@@ -9,9 +9,9 @@ router.post("/signIn", signIn);
 router.post("/logIn", logIn);
 router.post("/logOut", logOut);
 
-router.use(isAuthenticated);
-router.get("/", fetchProfile);
-router.get("/data", fetchUserData);
-router.post("/update", updateUser);
-router.get("/authentication", userAuthentication);
+// router.use(isAuthenticated);
+router.get("/", isAuthenticated, fetchProfile);
+router.get("/data", isAuthenticated, fetchUserData);
+router.post("/update", isAuthenticated, updateUser);
+router.get("/authentication", isAuthenticated, userAuthentication);
 export default router;

@@ -22,8 +22,8 @@ function App() {
             },
             credentials: "include"
         })
-        
-        console.log(response);
+        const data = await response.json();
+        console.log(data);
 
         if (response.status == 200) {
             dispatch({ type: 'logIn' });
