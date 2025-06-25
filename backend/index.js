@@ -26,8 +26,7 @@ app.use(express.json());
 
 
 app.use("/api/v1/user", userRoutes);
-app.use(isAuthenticated);
-app.use("/api/v1/room", roomRoutes);
+app.use("/api/v1/room", isAuthenticated, roomRoutes);
 
 app.use(express.static(path.join(__dirname, "/frontend/dist")));
 app.get('*', (req, res) => {
