@@ -92,13 +92,13 @@ function ChatPage() {
         <>
             <div className='bg-[#19191b] flex flex-col items-center gap-[5vh] font-moderna text-white'>
                 
-                {/* {list.length == 0 && 
+                {list.length == 0 && 
                 <div className="h-[70vh] w-[95%] flex-col flex justify-center border-[#333333] border-2 items-center rounded-[70px]">
                     <img src="chat.svg" alt="" className="w-[70%]"/>
                     <button onClick={() => {navigate('/search-rooms')}} className="bg-[#333333] rounded-2xl w-auto h-auto p-[7px] text-[40px]">New Chat</button>
-                </div> } */}
+                </div> }
 
-                {
+                {list.length != 0 && 
                 <div className="grid grid-cols-3 h-[70vh] gap-x-[7px] w-[95vw] text-[20px]">
                     <div className="text-[20px] col-span-1 flex flex-col overflow-y-auto justify-start rounded-2xl p-[7px] bg-[#1f1f22] font-bold">
                         <div className="text-center text-[40px]">Chats</div>
