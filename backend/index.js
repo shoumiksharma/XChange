@@ -8,17 +8,18 @@ import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import path from 'path';
 import {app, server} from './socket/socket.js'
+import isAuthenticated from './middlewares/isAuthenticated.js'
 
 dotenv.config();
 const PORT = process.env.PORT || 8080;
 
 const __dirname = path.resolve();
 
-app.use(cors({
-    origin: `${process.env.origin}`, // Allow only requests from your frontend's address
-    // methods: ['GET', 'POST'],       // Allow specific HTTP methods
-    credentials: true,               // Allow cookies (if needed)
-}));
+// app.use(cors({
+//     origin: `${process.env.origin}`, // Allow only requests from your frontend's address
+//     // methods: ['GET', 'POST'],       // Allow specific HTTP methods
+//     credentials: true,               // Allow cookies (if needed)
+// }));
 app.use(urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.json());
