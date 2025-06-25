@@ -7,28 +7,28 @@ import { fetchUser } from '../utils/fetchUser';
 
 function Navbar({openFeedback}) {
     const navigate = useNavigate();
-    const [user, setUser] = useState({});
+    // const [user, setUser] = useState({});
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     
     const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+    const user = useSelector((state) => state.user);
+    // useEffect(() => {
+    //     const fetchUserData = async () => {
 
-    useEffect(() => {
-        const fetchUserData = async () => {
-
-            const data = await fetchUser();
-            const userData = data.user;
+    //         const data = await fetchUser();
+    //         const userData = data.user;
     
-            if (userData) {
-                console.log(userData);
-                setUser(userData)
-            }
+    //         if (userData) {
+    //             // console.log(userData);
+    //             setUser(userData)
+    //         }
 
-        }
+    //     }
         
-        if(isLoggedIn){
-            fetchUserData();
-        }
-    }, [isLoggedIn] );
+    //     if(isLoggedIn){
+    //         fetchUserData();
+    //     }
+    // }, [isLoggedIn] );
 
 
     const toggleMenu = () => {

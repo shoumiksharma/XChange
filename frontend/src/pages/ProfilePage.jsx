@@ -1,23 +1,24 @@
 import { useEffect, useState } from "react";
 import { fetchUser } from "../utils/fetchUser";
 import useGetUser from "../hooks/useGetUser";
+import { useDispatch, useSelector } from "react-redux";
+import { setUser } from "../redux/userReducer";
+import ImageUpload from "../components/ImageUpload";
+import ToggleButton from "../components/toggleButton";
 
 function Profile(){
     const[editing, setEditiing] = useState(false);
-    const [user, setUser] = useState({})
-
-    const [formData, setFormData] = useState({
-        name: '',
-        hostel: '',
-        room_no: '',
-        type: '',
-    })
+    // const [user, setUser] = useState({})
+    
+    const dispatch = useDispatch();
 
     const handleSubmit = () => {
         updateUser(formData);
         setEditiing(false);
     }
 
+    const user = useSelector((state) => state.user);
+    const [formData, setFormData] = useState()
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setFormData((prevState) => ({
@@ -29,6 +30,7 @@ function Profile(){
     const updateUser = async () => {
 
         try{
+            dispatch(setUser(formData));
             const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/v1/user/update`, {
                 method : 'POST',
                 headers : {
@@ -39,10 +41,10 @@ function Profile(){
                     name: `${formData.name}`,
                     hostel: `${formData.hostel}`,
                     type: `${formData.type}`,
-                    room_no: `${formData.room_no}`
+                    room_no: `${formData.room}`
                 })
             })
-    
+                
             if(response.status != 200){
                 console.log("Error. Try again !");
             }
@@ -54,27 +56,33 @@ function Profile(){
     }
 
     useEffect(() => {
-        const fetchUserData = async () => {
+        if(user){
+            setFormData(user);
+        }
+    },[user]);
 
-            const data = await fetchUser();
-            const userData = data.user;
+    // useEffect(() => {
+    //     const fetchUserData = async () => {
+
+    //         const data = await fetchUser();
+    //         const userData = data.user;
     
-            if (userData) {
-                setUser(userData)
-                setFormData(userData)
-            }
+    //         if (userData) {
+    //             setUser(userData)
+    //             setFormData(userData)
+    //         }
 
-        }
+    //     }
 
-        fetchUserData();
-    }, [setEditiing] );
+    //     fetchUserData();
+    // }, [setEditiing] );
 
-    const userdata = useGetUser();
-    useEffect( () => {
-        if(userdata){
-            setUser(userdata);
-        }
-    }, [userdata]);
+    // const userdata = useGetUser();
+    // useEffect( () => {
+    //     if(userdata){
+    //         setUser(userdata);
+    //     }
+    // }, [userdata]);
 
     return (
         <>
@@ -93,7 +101,8 @@ function Profile(){
                         <button onClick={() => setEditiing(true)}><img src="pen.png" alt="" /></button>
                     </div>)}
 
-                    <div className="2xl:mt-[150px] 2xl:text-[40px] md:mt-[140px] mt-[70px] flex justify-items-start w-[80vw] gap-[100px]">
+                    <div className="flex items-center justify-center 2xl:mt-[150px] md:mt-[140px] mt-[70px]">
+                    <div className="2xl:text-[40px] flex flex-col items-center md:items-start gap-[100px]">
 
                         <form action="" onSubmit={handleSubmit}>
                             <div className="grid grid-cols-2 grid-rows-4 grid-flow-col gap-x-[40px] md:gap-x-[100px] md:gap-y-[20px] mb-[40px]">
@@ -104,12 +113,12 @@ function Profile(){
                     
                                 {!editing && <div>{user.name}</div>}
                                 {!editing && <div>{user.hostel}</div>}
-                                {!editing && <div>{user.room_no}</div>}
+                                {!editing && <div>{user.room}</div>}
                                 {!editing && <div>{user.type}</div>}
                                 
                                 {editing && <input value={formData.name} name="name" onChange={handleInputChange} type="text" className="rounded-full bg-[#333333] pl-[40px]"/>}
                                 {editing && <input value={formData.hostel} name="hostel" onChange={handleInputChange} type="text" className="rounded-full bg-[#333333] pl-[40px]"/>}
-                                {editing && <input value={formData.room_no} name="room_no" onChange={handleInputChange} type="text" className="rounded-full bg-[#333333] pl-[40px]"/>}
+                                {editing && <input value={formData.room} name="room" onChange={handleInputChange} type="text" className="rounded-full bg-[#333333] pl-[40px]"/>}
                                 {editing && <input value={formData.type} name="type" onChange={handleInputChange} type="text" className="rounded-full bg-[#333333] pl-[40px]"/>}
                                 
                             </div>
@@ -117,6 +126,17 @@ function Profile(){
                                 <button type="submit" className="bg-blue-500 hover:bg-sky-700 text-white px-[1vw] py-[0.5vh] rounded-full mr-2">Submit</button>
                             </div>)}
                         </form>
+                    </div>
+                    
+                    {!editing && 
+                    <div className="">
+                        <ImageUpload />
+                        <div className="flex justify-center items-center gap-[7px]">
+                            <ToggleButton />
+                             - Your room is {!user.room_hosted && <>not</>} hosted
+                        </div>
+                    </div>
+                    }
                     </div>
                 
                 </div>

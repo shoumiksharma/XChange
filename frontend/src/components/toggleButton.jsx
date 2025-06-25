@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { setUser } from '../redux/userReducer';
 
 const ToggleButton = () => {
   const [isToggled, setIsToggled] = useState(false);
-  const hosted = useSelector((state) => state.room.isRoomHosted);
+  const hosted = useSelector((state) => state.user.room_hosted);
   const dispatch = useDispatch();
 
-
   const updateUser = async () => {
-
     try {
       const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/v1/user/update`, {
         method: 'POST',
@@ -39,8 +38,9 @@ const ToggleButton = () => {
 
   const toggle = async () => {
     setIsToggled(!isToggled);
+    dispatch(setUser({ room_hosted: !hosted }));
     if (hosted) {
-      dispatch({ type: 'notHosted' });
+      dispatch({ type : 'notHosted'});
     }
     else {
       dispatch({ type: 'hosted' });

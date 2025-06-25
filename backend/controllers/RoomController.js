@@ -40,7 +40,6 @@ export const getRoomPhoto = async (req, res) => {
         
         if (!user.photos) {
             return res
-                .status(404)
                 .json({ message: "No photo found for this user" });
         }
 
@@ -74,7 +73,7 @@ export const searchRoom = async (req, res) => {
         }
 
         const rooms = await User.find(options);
-        console.log("rooms : ",rooms);
+        // console.log("rooms : ",rooms);
 
         return res
                 .status(200)

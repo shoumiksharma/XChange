@@ -93,7 +93,7 @@ const ImageUpload = () => {
 
             {uploaded && <>
                 {imageUrl ?
-                    <img src={imageUrl} alt="Room" className="h-[300px] object-fit" />
+                    <img src={imageUrl} alt="Room" className="object-fit rounded-[20px]" />
                     : 
                     <p>Loading image...</p>
                 }

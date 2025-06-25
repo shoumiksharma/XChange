@@ -7,8 +7,8 @@ const router = express.Router();
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
-router.post("/update", isAuthenticated, upload.single("image"), setRoomPhoto);
-router.get("/get-photo", isAuthenticated, getRoomPhoto);
-router.post("/search", isAuthenticated, searchRoom);
+router.post("/update", upload.single("image"), setRoomPhoto);
+router.get("/get-photo", getRoomPhoto);
+router.post("/search", searchRoom);
 
 export default router;

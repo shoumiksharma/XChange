@@ -54,8 +54,10 @@ export const signIn = async(req, res) => {
 
 export const logIn = async(req, res) => {
     try{
+        console.log(req.body);
         const {username, password} = req.body;
         if(!username || !password){
+            console.log("no password or username");
             return res
                     .status(400)
                     .json({message : "All fields are required"})
@@ -97,7 +99,16 @@ export const logIn = async(req, res) => {
                     sameSite : "None",
                     secure : 'false'
                 })
-                .json({message : "Log In Successfull !", name : user.name});
+                .json(
+                    {
+                        message : "Log In Successfull !", 
+                        name : user.name, 
+                        data : {
+                            name: user.name,
+                            userId: user._id
+                        }
+                    }
+                );
     }
 
     catch(err){
@@ -127,9 +138,36 @@ export const fetchProfile = async(req, res) => {
     try{
         const _id = req.userId;
         const user = await User.findById({_id});
+        console.log(user);
         return res
                 .status(200)
                 .json({user});
+    }
+
+    catch(err){
+        console.log("Error : ",err);
+    }
+}
+
+export const fetchUserData = async(req, res) => {
+    try{
+        const _id = req.userId;
+        const user = await User.findById({_id});
+        return res
+                .status(200)
+                .json(
+                    {
+                        name: user.name,
+                        userId: user._id,
+                        profilePhoto: user.profilePhoto,
+                        gender: user.gender,
+                        hostel: user.hostel,
+                        type: user.type,
+                        room: user.room_no,
+                        room_hosted: user.room_hosted,
+                        photo: user.photos
+                    }
+                );
     }
 
     catch(err){
