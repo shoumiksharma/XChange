@@ -7,6 +7,7 @@ import connectDB from './config/database.js';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import path from 'path';
+import {app, server} from './socket/socket.js'
 
 dotenv.config();
 const PORT = process.env.PORT || 8080;
