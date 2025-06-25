@@ -86,9 +86,9 @@ function App() {
                 <BrowserRouter>
                     <Navbar openFeedback={openFeedback} />
                     {feedback && (<Feedback closeFeedback={closeFeedback} />)}
-                    <Suspense fallback={<div>Loading...</div>}>
+                    {/* <Suspense fallback={<div>Loading...</div>}> */}
                     <RouteConfig />
-                    </Suspense>
+                    {/* </Suspense> */}
                 </BrowserRouter></div>
         </>
     )
