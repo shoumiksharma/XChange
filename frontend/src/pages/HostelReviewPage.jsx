@@ -8,14 +8,15 @@ function HostelReview(){
                         <label htmlFor="filter">Filter by hostel : </label>
                         <select className="bg-black w-[70px] rounded-2xl text-center" name="hostel" id="hostel">
                             <option value="1">1</option>
-                            <option value="1">1</option>
-                            <option value="1">1</option>
-                            <option value="1">1</option>
-                            <option value="1">1</option>
-                            <option value="1">1</option>
-                            <option value="1">1</option>
+                            <option value="1">2</option>
+                            <option value="1">3</option>
+                            <option value="1">4</option>
                         </select>
                     </form>
+                </div>
+
+                <div>
+                    This feature is under develpoment
                 </div>
                 <div className="bg-black w-[95vw] p-[20px] rounded-2xl text-[20px]">
                     <div>By : Lorem. , 20/20/20</div>

@@ -1,7 +1,8 @@
+import { useNavigate } from "react-router-dom";
 import useRoomImage from "../hooks/useRoomImage";
 
 function RoomCard ({owner, room_no, hostel, id}) {
-
+    const navigate = useNavigate();
     const imgURL = useRoomImage(id);
 
     return(
@@ -17,7 +18,7 @@ function RoomCard ({owner, room_no, hostel, id}) {
                         <div>Room No. : {room_no}</div>
                         <div>Hostel : {hostel}</div>
                     </div>
-                    <button className="bg-blue-700 rounded-2xl h-[44px] w-[140px]">Chat & Swap</button>
+                    <button className="bg-blue-700 rounded-2xl h-[44px] w-[140px]" onClick={() => navigate('/chats', { state: { rid: id, name: owner } })}>Chat & Swap</button>
                 </div>
             </div>
             
