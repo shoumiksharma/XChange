@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { logIn } from "../utils/logInFunctions";
 import { useDispatch } from "react-redux";
+import { setUser } from "../redux/userReducer";
 
 
 function LogIn(){
@@ -27,10 +28,28 @@ function LogIn(){
         try {
             const response = await logIn(formData);
             const data = await response.json();
-            console.log(data)
+            // console.log(data)
             alert(data.message);
+            // console.log(data.data);
+            dispatch(setUser(data.data));
             if(response.status == 200){
                 dispatch({ type: 'logIn' });
+
+                // console.log("fetching data")
+                            
+                const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/v1/user/data`, {
+                    method: "GET",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    credentials: "include"
+                })
+                const data = await response.json();
+                console.log(data);
+    
+                // dispatch(setUser(data));
+                
+
                 navigate('/');
             }
         } 

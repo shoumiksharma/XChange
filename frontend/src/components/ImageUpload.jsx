@@ -12,7 +12,7 @@ const ImageUpload = () => {
 
     const handleFileChange = (e) => {
         setImage(e.target.files[0]);
-        console.log("hello",image);
+        // console.log("hello",image);
         setSelected(true);
     };
 
@@ -24,7 +24,7 @@ const ImageUpload = () => {
 
         const formData = new FormData();
         formData.append('image', image);
-        console.log(imageUrl);
+        // console.log(imageUrl);
         try {
 
             console.log("form",formData);
@@ -93,7 +93,7 @@ const ImageUpload = () => {
 
             {uploaded && <>
                 {imageUrl ?
-                    <img src={imageUrl} alt="Room" className="h-[300px] object-fit" />
+                    <img src={imageUrl} alt="Room" className="object-fit rounded-[20px]" />
                     : 
                     <p>Loading image...</p>
                 }

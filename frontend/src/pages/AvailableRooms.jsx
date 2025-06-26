@@ -1,17 +1,26 @@
 import { useEffect, useState } from "react";
 import { searchRooms } from "../utils/searchRooms";
 import RoomCard from "../components/RoomCard";
+import { useNavigate } from "react-router-dom";
 
 function AvailableRooms(){
+    const navigate = useNavigate();
     const [hostel, setHostel] = useState('all');
     const [rooms, setRooms] = useState([]);
     
     useEffect( () => {
 
         const fetchRooms = async () => {
-            const arr = await searchRooms(hostel);
-            setRooms(arr);
-            console.log(arr);
+            const data = await searchRooms(hostel);
+            if(data.status != 200){
+                navigate('/log-in');
+            }
+            else{
+                const arr = await data.json();
+                setRooms(arr.avail_rooms);
+                // console.log(arr);
+            }
+            // console.log(data);
         }
         fetchRooms();
     }, [hostel]);
@@ -23,7 +32,7 @@ function AvailableRooms(){
         <>
             <div className='bg-[#19191b] min-h-screen flex flex-col items-center gap-[5vh] font-moderna text-white'>
 
-                    <div className="flex justify-end w-[85vw] text-[20px]">
+                    <div className="flex justify-center md:justify-end w-[85vw] text-[20px]">
                         <form action="">
                             <label htmlFor="filter">Filter by hostel : </label>
 

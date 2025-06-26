@@ -33,7 +33,7 @@ function HostelReview(){
                     <div>By : Lorem. , 20/20/20</div>
                     <div>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illum voluptate minima, numquam dolore modi, aut accusamus sunt sapiente blanditiis totam magnam id dolores cum mollitia atque pariatur eligendi iste officia nostrum ducimus repudiandae cumque quasi harum. Perferendis sit enim numquam.</div>
                 </div>
-            </div>
+            </div>.
         </>
     )
 }

@@ -11,9 +11,9 @@ export const searchRooms = async (hostel) => {
             body: JSON.stringify({hostel})
         });
 
-        const data = await rooms.json();
+        // const data = await rooms.json();
 
-        return data.avail_rooms;
+        return rooms;
     }
     catch(err){
         console.log("Error : ",err);

@@ -14,7 +14,7 @@ function Profile(){
     })
 
     const hosted = useSelector((state) => state.room.isRoomHosted);
-    const dispatch = useDispatch(); 
+    const dispatch = useDispatch();
 
     useEffect(() => {
         const fetchUserData = async () => {
@@ -59,15 +59,15 @@ function Profile(){
         <>
 
             <div className='bg-[#19191b] min-h-screen flex flex-col items-center font-moderna text-white pb-[40px]'>
-                <div className="bg-black border-2 border-green-400 w-[95vw] rounded-4xl flex flex-col items-center pb-[40px] md:text-[35px]">
+                <div className="bg-black border-2 border-green-400 w-[95vw] rounded-4xl flex flex-col items-center pb-[40px] text-[20px] md:text-[35px]">
 
-                    <div className="2xl:mt-[150px] md:mt-[140px] mt-[70px] flex justify-around w-[80vw] gap-[100px]">
+                    <div className="2xl:mt-[150px] md:mt-[140px] mt-[70px] flex justify-around md:flex-row flex-col items-center w-[80vw] gap-[40px] md:gap-[100px]">
 
-                            <div className="grid grid-cols-2 grid-rows-3 grid-flow-col gap-x-[40px] md:gap-x-[100px] md:gap-y-[20px] mb-[40px]">
+                            <div className="grid grid-cols-2 grid-rows-3 grid-flow-col gap-x-[80px] md:gap-x-[7vw] md:gap-y-[20px]">
                                 
-                                <label htmlFor="hostel">Hostel : </label>
-                                <label htmlFor="room">Room : </label>
-                                <label htmlFor="type">Room Type : </label>
+                                <label htmlFor="hostel">Hostel: </label>
+                                <label htmlFor="room">Room: </label>
+                                <label htmlFor="type">Room Type: </label>
                     
                                 <div>{user.hostel}</div>
                                 <div>{user.room_no}</div>
@@ -78,7 +78,7 @@ function Profile(){
                             <ImageUpload />
                     </div>
 
-                    <div className="flex justify-center gap-[14px] items-center w-[95vw] text-[#333333]">
+                    <div className="flex justify-center gap-[14px] items-center w-[95vw] text-[#333333] mt-[20px]">
                         <ToggleButton />
                          - Your room is {!hosted && <>not</>} hosted
                     </div>
