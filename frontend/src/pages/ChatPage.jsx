@@ -71,6 +71,7 @@ function ChatPage() {
                 console.log("fetching list");
                 const list = await getList();
                 setList(list);
+                
                 console.log(list+"here");
             }
             catch(err){
@@ -103,10 +104,11 @@ function ChatPage() {
                 <div className="grid grid-cols-3 h-[70vh] gap-x-[7px] w-[95vw] text-[20px]">
                     <div className="text-[20px] col-span-1 flex flex-col overflow-y-auto justify-start rounded-2xl p-[7px] bg-[#1f1f22] font-bold">
                         <div className="text-center text-[40px]">Chats</div>
+                        
                         {list.map((items, index) => (
                             <button onClick={() => { setRid(items._id); setName(items.name) }} key={index} className="mb-[2px] text-start p-[2px] pl-[20px] w-[100%] flex gap-[20px] justify-start items-center">
                                 <div className="border-2 border-[#65e687] rounded-[70px] w-[14%] overflow-hidden">
-                                    <img src={`${user.gender === 'm' ? 'teen.png' : 'teen1.png'}`} alt="" className="relative top-1 scale-107"/>
+                                    <img src={`${user.gender === 'm' ? 'teen.png' : 'teen (1).png'}`} alt="" className="relative top-1 scale-107"/>
                                 </div>
                                 <div>{items.name}</div>
                             </button>
