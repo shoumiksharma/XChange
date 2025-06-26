@@ -61,29 +61,6 @@ function Profile(){
         }
     },[user]);
 
-    // useEffect(() => {
-    //     const fetchUserData = async () => {
-
-    //         const data = await fetchUser();
-    //         const userData = data.user;
-    
-    //         if (userData) {
-    //             setUser(userData)
-    //             setFormData(userData)
-    //         }
-
-    //     }
-
-    //     fetchUserData();
-    // }, [setEditiing] );
-
-    // const userdata = useGetUser();
-    // useEffect( () => {
-    //     if(userdata){
-    //         setUser(userdata);
-    //     }
-    // }, [userdata]);
-
     return (
         <>
 

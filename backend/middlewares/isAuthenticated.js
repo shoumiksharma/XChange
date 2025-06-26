@@ -8,7 +8,7 @@ const isAuthenticated = async (req, res, next) => {
         // const token = authHeader && authHeader.split(' ')[1];
 
         if(!token){
-            console.log("no key");
+            // console.log("no key");
             return res
                     .status(401)
                     .json({message : "User not authenticated"});

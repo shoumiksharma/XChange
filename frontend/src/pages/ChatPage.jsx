@@ -44,12 +44,12 @@ function ChatPage() {
             socket.on("receiveMsg", (data) => {
                 if(data.from === rid || data.rid === rid){
                     setMsg((prev) => [...prev, data]);
-                    console.log("message",data.message);
+                    // console.log("message",data.message);
                 }
-                console.log(data,"updated");
+                // console.log(data,"updated");
                 if(!list.some(item => (item._id === data.from || item._id != user.userId))){
-                    console.log(user.userId,"userId");
-                    console.log(data.from,"list",user.userId);
+                    // console.log(user.userId,"userId");
+                    // console.log(data.from,"list",user.userId);
                     setList((prev) => [...prev, data.from]);
                 }
             })
@@ -113,73 +113,28 @@ function ChatPage() {
                                 <div>{items.name}</div>
                             </button>
                         ))}
-                        {/* {list.map((items, index) => (
-                            <button key={index} value={items._id} className="border-[#333333] text-start p-[20px] w-[100%] flex gap-[7px]">
-                                <div className="border-2 border-[#65e687] rounded-4xl w-[7%]"></div>
-                                <div>{items.name}</div>
-                            </button>
-                        ))}
-                        {list.map((items, index) => (
-                            <button key={index} value={items._id} className="border-[#333333] text-start p-[20px] w-[100%] flex gap-[7px]">
-                                <div className="border-2 border-[#65e687] rounded-4xl w-[7%]"></div>
-                                <div>{items.name}</div>
-                            </button>
-                        ))}
-                        {list.map((items, index) => (
-                            <button key={index} value={items._id} className="border-[#333333] text-start p-[20px] w-[100%] flex gap-[7px]">
-                                <div className="border-2 border-[#65e687] rounded-4xl w-[7%]"></div>
-                                <div>{items.name}</div>
-                            </button>
-                        ))}
-                        {list.map((items, index) => (
-                            <button key={index} value={items._id} className="border-[#333333] text-start p-[20px] w-[100%] flex gap-[7px]">
-                                <div className="border-2 border-[#65e687] rounded-4xl w-[7%]"></div>
-                                <div>{items.name}</div>
-                            </button>
-                        ))}
-                        {list.map((items, index) => (
-                            <button key={index} value={items._id} className="border-[#333333] text-start p-[20px] w-[100%] flex gap-[7px]">
-                                <div className="border-2 border-[#65e687] rounded-4xl w-[7%]"></div>
-                                <div>{items.name}</div>
-                            </button>
-                        ))}
-                        {list.map((items, index) => (
-                            <button key={index} value={items._id} className="border-[#333333] text-start p-[20px] w-[100%] flex gap-[7px]">
-                                <div className="border-2 border-[#65e687] rounded-4xl w-[7%]"></div>
-                                <div>{items.name}</div>
-                            </button>
-                        ))}
-                        {list.map((items, index) => (
-                            <button key={index} value={items._id} className="border-[#333333] text-start p-[20px] w-[100%] flex gap-[7px]">
-                                <div className="border-2 border-[#65e687] rounded-4xl w-[7%]"></div>
-                                <div>{items.name}</div>
-                            </button>
-                        ))}
-                        {list.map((items, index) => (
-                            <button key={index} value={items._id} className="border-[#333333] text-start p-[20px] w-[100%] flex gap-[7px]">
-                                <div className="border-2 border-[#65e687] rounded-4xl w-[7%]"></div>
-                                <div>{items.name}</div>
-                            </button>
-                        ))} */}
+
                     </div>
                     <div className="bg-[#1f1f22] col-span-2 overflow-y-auto rounded-2xl">
                     {rid!="" && 
                         <div className="flex flex-col relative items-center h-[100%] p-[7px]">
                             <div className="flex justify-start items-center w-[95%] gap-[22px] mb-[7px]">
-                                {/* <div className="border-2 border-[#65e687] rounded-4xl w-[40px] h-[40px]"></div> */}
+
                                 <div className="border-2 border-[#65e687] rounded-[70px] w-[7%] overflow-hidden">
                                     <img src={`${user.gender === 'm' ? 'teen.png' : 'teen1.png'}`} alt="" className="relative top-1 scale-107"/>
                                 </div>
                                 <div className="font-bold">{name}</div>
+
                             </div>
                             <div className="flex flex-col h-[70%] justify-start w-[95%] overflow-auto">
                                 {msg.map((item, index) => (
-                                    // <div key={index} className={`flex w-[95%] flex-col ${item.rid == rid ? "items-end" : "items-start"}`}>{item.message}</div>
+
                                     <div key={index} className={`flex w-full ${item.rid === rid ? "justify-end" : "justify-start"} mb-2`}>
                                         <div className={`px-4 py-2 rounded-2xl break-words text-white ${item.rid === rid ? "bg-green-500" : "bg-gray-700"} max-w-[40%]`}>
                                             {item.message}
                                         </div>
                                     </div>
+
                                 ))}
                                 <div ref={bottom}></div>
                             </div>
@@ -190,6 +145,7 @@ function ChatPage() {
                                     <img src={`${text === '' ? 'send-not.svg' : 'send.svg'}`} alt="" />
                                 </button>
                             </div>
+
                         </div>}
                     </div>
                 </div>}

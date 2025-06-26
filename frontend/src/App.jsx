@@ -15,7 +15,7 @@ function App() {
     const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
     const getInitialState = async () => {
-        console.log("authenticating");
+        // console.log("authenticating");
         const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/v1/user/authentication`, {
             method: "GET",
             headers: {
@@ -28,7 +28,7 @@ function App() {
 
         if (response.status == 200) {
             dispatch({ type: 'logIn' });
-            console.log("fetching data")
+            // console.log("fetching data")
             
             const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/v1/user/data`, {
                 method: "GET",
@@ -38,7 +38,7 @@ function App() {
                 credentials: "include"
             })
             const data = await response.json();
-            console.log(data+"redux");
+            console.log(data);
 
             dispatch(setUser(data));
 

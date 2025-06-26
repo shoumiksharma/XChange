@@ -119,7 +119,7 @@ export const getList = async(req, res) => {
 
         const names = await User.find({ _id: { $in: list } }).select("name");
 
-        console.log(names);
+        // console.log(names);
 
         return res
                 .status(200)

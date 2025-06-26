@@ -1,5 +1,3 @@
-import React from 'react';
-
 function HamburgerMenu({ toggleMenu, isMenuOpen }) {
     return (
         <button onClick={toggleMenu}>
@@ -13,23 +11,3 @@ function HamburgerMenu({ toggleMenu, isMenuOpen }) {
 }
 
 export default HamburgerMenu;
-
-
-
-
-
-// function HamburgerMenu(){
-//     return (
-//         <>
-//             <button>
-//                 <div className="flex flex-col gap-[0.5vh]">
-//                     <div className="h-[2px] 2xl:h-[0.7vh] w-[20px] 2xl:w-[2vw] bg-white rounded-full"></div>
-//                     <div className="h-[2px] 2xl:h-[0.7vh] w-[20px] 2xl:w-[2vw] bg-white rounded-full"></div>
-//                     <div className="h-[2px] 2xl:h-[0.7vh] w-[20px] 2xl:w-[2vw] bg-white rounded-full"></div>
-//                 </div>
-//             </button>
-//         </>
-//     )
-// }
-
-// export default HamburgerMenu;

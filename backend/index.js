@@ -20,6 +20,7 @@ const __dirname = path.resolve();
 //     // methods: ['GET', 'POST'],       // Allow specific HTTP methods
 //     credentials: true,               // Allow cookies (if needed)
 // }));
+
 app.use(urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.json());
