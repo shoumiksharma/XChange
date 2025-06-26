@@ -15,6 +15,7 @@ function App() {
     const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
     const getInitialState = async () => {
+        console.log("authenticating");
         const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/v1/user/authentication`, {
             method: "GET",
             headers: {
@@ -49,7 +50,7 @@ function App() {
 
     useEffect(() => {
         getInitialState();
-    }, [])
+    }, [isLoggedIn])
 
     useEffect(() => {
         if (isLoggedIn) {
