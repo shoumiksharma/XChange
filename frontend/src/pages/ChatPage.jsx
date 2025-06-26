@@ -71,7 +71,7 @@ function ChatPage() {
                 console.log("fetching list");
                 const list = await getList();
                 setList(list);
-                console.log(list);
+                console.log(list+"here");
             }
             catch(err){
                 console.log(err);
