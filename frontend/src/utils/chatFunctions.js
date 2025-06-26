@@ -7,7 +7,7 @@ export const getList = async () => {
             },
             credentials : 'include'
         })
-
+        console.log("req sent");
         const response = await res.json();
         const list = response.data;
         console.log("received",list);

@@ -68,6 +68,7 @@ function ChatPage() {
     useEffect(() => {
         const fetch = async () => {
             try{
+                console.log("fetching list");
                 const list = await getList();
                 setList(list);
                 console.log(list);
@@ -77,7 +78,7 @@ function ChatPage() {
             }
         }
         fetch();
-    },[list])
+    },[])
 
     useEffect(() => {
 
