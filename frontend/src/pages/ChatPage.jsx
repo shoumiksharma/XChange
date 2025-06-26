@@ -184,7 +184,7 @@ function ChatPage() {
 
                             <div className="absolute bottom-0 bg-[#2a2a2e] w-[95%] h-[70px] rounded-[70px] mb-[20px] flex justify-between items-center p-[7px] pl-[40px]">
                                 <textarea onChange={(e) => { setText(e.target.value) }} value={text} name="" placeholder="Type a message ..." id="" className="w-[95%] resize-none border-none focus:outline-none"></textarea>
-                                <button onClick={() => { sendMessage(text, rid); setText(""); setReload(!reload) }} disabled={text == ""} className="rounded-[40px] w-[40px] h-[40px]">
+                                <button onClick={() => { sendMessage(text, rid); setText("")}} disabled={text == ""} className="rounded-[40px] w-[40px] h-[40px]">
                                     <img src={`${text === '' ? 'send-not.svg' : 'send.svg'}`} alt="" />
                                 </button>
                             </div>

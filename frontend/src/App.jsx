@@ -54,7 +54,7 @@ function App() {
     useEffect(() => {
         if (isLoggedIn) {
             console.log("logged in");
-            const socket = io("http://localhost:8080", {
+            const socket = io(`${import.meta.env.VITE_BACKEND_URL}`, {
                 withCredentials : true
             });
             dispatch(setSocket(socket));
