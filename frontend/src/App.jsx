@@ -37,7 +37,7 @@ function App() {
                 credentials: "include"
             })
             const data = await response.json();
-            console.log(data);
+            console.log(data+"redux");
 
             dispatch(setUser(data));
 
